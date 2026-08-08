@@ -9,6 +9,13 @@
 #SBATCH --mail-type=END # send email at job completion
 #SBATCH --mail-user=m.kouhsar@exeter.ac.uk # email address
 
+
+if [ "$#" -ne 1 ]; then
+    echo "Error: No config file is provided!"
+    echo "Usage: $0 <Config file>"
+    exit 1
+fi
+
 source $1
 
 Rscript ${ScriptDir}/SaveResults.R $OutPrefix $CisPvalue $TransPvalue $Dist $TransCrossChr $SavecsvCis $SavecsvTrans $chr "$Overwrite"

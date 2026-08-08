@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -A Research_Project1 # research project to submit under.
+#SBATCH -A Research_Project-MRC164847 # research project to submit under.
 #SBATCH --export=ALL # export all environment variables to the batch job.
 #SBATCH -D . # set working directory to .
 #SBATCH -p mrcq
@@ -8,6 +8,12 @@
 #SBATCH --ntasks-per-node=16 # specify number of processors.
 #SBATCH --mail-type=END # send email at job completion
 #SBATCH --mail-user=m.kouhsar@exeter.ac.uk # email address
+
+if [ "$#" -ne 1 ]; then
+    echo "Error: No config file is provided!"
+    echo "Usage: $0 <Config file>"
+    exit 1
+fi
 
 source $1
 
@@ -56,5 +62,5 @@ else
 fi
 
 
-Rscript ${ScriptDir}/PrepareData.R ${GenotypeBinaryPrefix}.fam ${PlinkDir}/${OutFilePrefix}.eigenvec $ExpressionFile $PhenotypeFile $GeneLocationFile "$FactCovar" "$NumCovar" "$OutPrefix" "$chr" "$Overwrite"
+Rscript ${ScriptDir}/R/PrepareData.R ${GenotypeBinaryPrefix}.fam ${PlinkDir}/${OutFilePrefix}.eigenvec $ExpressionFile $PhenotypeFile $GeneLocationFile "$FactCovar" "$NumCovar" "$OutPrefix" "$chr" "$Overwrite"
 

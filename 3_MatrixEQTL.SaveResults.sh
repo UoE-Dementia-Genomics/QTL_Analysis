@@ -12,6 +12,13 @@
 #SBATCH --output=QTL.Save.%j.out
 ####################################################################################################
 
+
+if [ "$#" -ne 1 ]; then
+    echo "Error: No config file is provided!"
+    echo "Usage: $0 <Config file>"
+    exit 1
+fi
+
 source $1
 
 Rscript ${ScriptDir}/SaveResults.R $OutPrefix $CisPvalue $TransPvalue $Dist $TransCrossChr $SavecsvCis $SavecsvTrans $chr "$Overwrite"
