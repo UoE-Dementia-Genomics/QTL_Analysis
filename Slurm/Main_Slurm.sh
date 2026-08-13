@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -A Research_Project1 # research project to submit under.
+#SBATCH -A Research_Project-MRC164847 # research project to submit under.
 #SBATCH --export=ALL # export all environment variables to the batch job.
 #SBATCH -D . # set working directory to .
 #SBATCH -p mrcq
@@ -10,5 +10,5 @@
 #SBATCH --mail-user=m.kouhsar@exeter.ac.uk # email address
 
 
-Rscript $1/Main.R $2 $SLURM_ARRAY_TASK_ID $3 $4 $5 $6 $7
+Rscript $1/R/Main.R $2 $SLURM_ARRAY_TASK_ID $3 $4 $5 $6 $7
 

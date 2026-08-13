@@ -54,8 +54,10 @@ done
 if [ ! -f ${PlinkDir}/${OutFilePrefix}.eigenvec ] || [ $Overwrite = "yes" ]
 then
   echo "Calculating genotype data PCs..."
-  gcta64 --bfile ${GenotypeBinaryPrefix} --make-grm-bin --out ${PlinkDir}/${OutFilePrefix} --thread-num 16
-  gcta64 --grm ${PlinkDir}/${OutFilePrefix} --pca --out ${PlinkDir}/${OutFilePrefix}
+  plink --bfile ${GenotypeBinaryPrefix} --indep-pairwise 200 50 0.2 --out ${PlinkDir}/${OutFilePrefix}
+  plink --bfile ${GenotypeBinaryPrefix} --extract ${PlinkDir}/${OutFilePrefix}.prune.in --make-bed --out ${PlinkDir}/${OutFilePrefix}_pruned
+  gcta64 --bfile ${PlinkDir}/${OutFilePrefix}_pruned --make-grm-bin --out ${PlinkDir}/${OutFilePrefix}_pruned --thread-num 16
+  gcta64 --grm ${PlinkDir}/${OutFilePrefix}_pruned --pca --out ${PlinkDir}/${OutFilePrefix}
 else
     echo "Genotype data PCs already exists."
     echo "#########################################################################################"

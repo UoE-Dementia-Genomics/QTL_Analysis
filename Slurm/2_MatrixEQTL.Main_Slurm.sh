@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -A Research_Project1 # research project to submit under.
+#SBATCH -A Research_Project-MRC164847 # research project to submit under.
 #SBATCH --export=ALL # export all environment variables to the batch job.
 #SBATCH -D . # set working directory to .
 #SBATCH -p mrcq
@@ -26,7 +26,4 @@ then
 fi
 
 
-sbatch --array=$chr ${ScriptDir}/Main.sh ${ScriptDir} $OutPrefix $Dist $CisPvalue $TransPvalue $TransCrossChr $Overwrite
-
-
-
+sbatch --array=$chr ${ScriptDir}/Slurm/Main_Slurm.sh ${ScriptDir} $OutPrefix $Dist $CisPvalue $TransPvalue $TransCrossChr $Overwrite
