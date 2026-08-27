@@ -34,7 +34,7 @@ do
   echo "***************************************************************************************"
   echo "                               QTL analysis chromosome $i ..."
   echo "***************************************************************************************"
-  Rscript ${ScriptDir}/Main.R $OutPrefix $i $Dist $CisPvalue $TransPvalue $TransCrossChr "$Overwrite"
+  Rscript ${ScriptDir}/R/Main.R $OutPrefix $i $Dist $CisPvalue $TransPvalue $TransCrossChr "$Overwrite"
 done
 
 
